@@ -1,142 +1,95 @@
 const Engine = Matter.Engine;
-
 const World = Matter.World;
-
-const Body = Matter.Body;
-
 const Bodies = Matter.Bodies;
-
 const Constraint = Matter.Constraint;
 
 var engine, world;
-
-var ground1, BlockBlue1, BlockBlue2, BlockBlue3, BlockBlue4, BlockBlue5, BlockBlue7;
-
-var BlockPink1, BlockPink2, BlockPink3, BlockPink4, BlockPink5, BlockPink6, BlockPink7;
-
-var BlockBlue8, BlockBlue9, BlockBlue10, BlockBlue11, BlockBlue12, BlockBlue13, BlockBlue14;
-
-var polygon1;
+var ground, sling, ball;
+var stand1, stand2;
+var box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13, box14, box15;
+var py1, py2, py3, py4, py5;
 
 function setup() {
-
-  createCanvas(800, 400);
-
+  createCanvas(1300, 400);
   engine = Engine.create();
-
-  world = engine.world
-
-  ground1 = new Ground(170, 200, 320, 20);
-
-  //first level
-  BlockBlue1 = new Box(200, 182, 20, 20);
-
-  BlockBlue2 = new Box(220, 182, 20, 20);
-
-  BlockBlue3 = new Box(240, 182, 20, 20);
-
-  BlockBlue4 = new Box(260, 182, 20, 20);
-
-  BlockBlue5 = new Box(280, 182, 20, 20);
-
-  BlockBlue6 = new Box(300, 182, 20, 20);
-
-  BlockBlue7 = new Box(320, 182, 20, 20);
-
-  //second level
-  BlockPink1 = new BoxPink(201, 2, 20, 20);
-
-  BlockPink2 = new BoxPink(220, 2, 20, 20);
-
-  BlockPink3 = new BoxPink(240, 2, 20, 20);
-
-  BlockPink4 = new BoxPink(260, 2, 20, 20);
-
-  BlockPink5 = new BoxPink(280, 2, 20, 20);
-
-  BlockPink6 = new BoxPink(300, 2, 20, 20);
-
-  BlockPink7 = new BoxPink(320, 2, 20, 20);
-
-  //third level
-  BlockBlue8  = new Box(202, 182, 20, 20);
-
-  BlockBlue9  = new Box(220, 182, 20, 20);
-
-  BlockBlue10 = new Box(240, 182, 20, 20);
-
-  BlockBlue11 = new Box(260, 182, 20, 20);
-
-  BlockBlue12 = new Box(280, 182, 20, 20);
-
-  BlockBlue13 = new Box(300, 182, 20, 20);
-
-  BlockBlue14 = new Box(320, 182, 20, 20);
-
-  polygon_1 = new poly(110, 100, 20, 20);
-
-  sling = new SlingShot(polygon_1.body, { x: 70, y: 90 });
-
-  Engine.run(engine);
-
+  world = engine.world;
+  ground = new Ground(750, 375, 1500, 50);
+  box1 = new Box(400, 230, 50, 50);
+  box2 = new Box(450, 230, 50, 50);
+  box3 = new Box(500, 230, 50, 50);
+  box4 = new Box(550, 230, 50, 50);
+  box5 = new Box(600, 230, 50, 50);
+  box6 = new Box(425, 180, 50, 50);
+  box7 = new Box(475, 180, 50, 50);
+  box8 = new Box(525, 180, 50, 50);
+  box9 = new Box(575, 180, 50, 50);
+  box10 = new Box(450, 130, 50, 50);
+  box11 = new Box(500, 130, 50, 50);
+  box12 = new Box(550, 130, 50, 50);
+  box13 = new Box(475, 80, 50, 50);
+  box14 = new Box(525, 80, 50, 50);
+  box15 = new Box(500, 30, 50, 50);
+  py1 = new Box(845, 150, 50, 50);
+  py2 = new Box(895, 150, 50, 50);
+  py3 = new Box(945, 150, 50, 50);
+  py4 = new Box(870, 100, 50, 50);
+  py5 = new Box(920, 100, 50, 50);
+  py6 = new Box(895, 50, 50, 50);
+  ball = new Polygon(100, 100, 30);
+  stand1 = new Ground(500, 270, 300, 20);
+  stand2 = new Ground(900, 200, 300, 20);
+  sling = new Sling(ball.body, { x: 200, y: 250 })
 }
 
 function draw() {
-  background(56, 44, 44);
-  ground1.display();
-
-  BlockBlue1.display();
-
-  BlockBlue2.display();
-
-  BlockBlue3.display();
-
-  BlockBlue4.display();
-
-  BlockBlue5.display();
-
-  BlockBlue6.display();
-
-  BlockBlue7.display();
-
-  BlockPink1.display ();
-
-  BlockPink2.display ();
-
-  BlockPink3.display ();
-
-  BlockPink4.display ();
-
-  BlockPink5.display ();
-
-  BlockPink6.display ();
-
-  BlockPink7.display ();
-
-  BlockBlue8.display ();
-
-  BlockBlue9.display ();
-
-  BlockBlue10.display();
-
-  BlockBlue11.display();
-
-  BlockBlue12.display();
-
-  BlockBlue13.display();
-
-  BlockBlue14.display();
-
-  polygon_1.display();
-
-  sling.display();
+  background(0);
+  Engine.update(engine);
+  rectMode(CENTER);
+  ground.display();
+  box1.display("red", "pink");
+  box2.display("red", "pink");
+  box3.display("red", "pink");
+  box4.display("red", "pink");
+  box5.display("red", "pink");
+  box6.display("indigo", "pink");
+  box7.display("indigo", "pink");
+  box8.display("indigo", "pink");
+  box9.display("indigo", "pink");
+  box10.display("green", "pink");
+  box11.display("green", "pink");
+  box12.display("green", "pink");
+  box13.display("orange", "pink");
+  box14.display("orange", "pink");
+  box15.display("saffron", "pink");
+  py1.display(rgb(229, 116, 117), "cyan")
+  py2.display(rgb(229, 116, 117), "cyan")
+  py3.display(rgb(229, 116, 117), "cyan")
+  py4.display(rgb(110, 71, 102), "cyan")
+  py5.display(rgb(110, 71, 102), "cyan")
+  py6.display(rgb(251, 189, 76), "cyan")
+  sling.display("limegreen");
+  stand1.display();
+  stand2.display();
+  ball.display("darkblue", "orange");
+  textSize(35);
+  fill(0);
+  text("DRAG AND RELEASE THE BALL TO DESTROY THE BOXES", 150, 385)
+  fill("orange");
+  textSize(20);
+  text("PRESS SPACE FOR A SECOND CHANCE !!",20,20)
 }
 
 function mouseDragged() {
-  Matter.Body.setPosition(polygon_1.body, { x: mouseX, y: mouseY })
+  Matter.Body.setPosition(ball.body, { x: mouseX, y: mouseY })
 }
+
 
 function mouseReleased() {
   sling.fly();
 }
 
+function keyPressed() {
+  if (keyCode === 32) {
+    sling.attach(ball.body);
+  }
+}
