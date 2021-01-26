@@ -1,29 +1,25 @@
-class poly{
-
-    constructor(x, y, width, height) {
+class Polygon {
+    constructor(x, y, radius) {
         var options = {
-
-            isStatic: false,
-            restitution: 0.1,
-            frictions: 0.01,
-            density:0.02
-
+            'restitution':0.5,
+            'friction':1.5,
+            'density':2.0,
+             isStatic: false
         }
-
-        this.body = Bodies.rectangle(x, y, width, height, options);
-
-        //NameSpacing(renaming width and height)
-        this.width = width;
-        this.height = height;
+        this.body = Bodies.circle(x, y, radius/2, options);
+        this.radius = radius;
+        this.image = loadImage('Sprites/polygon.png');
         World.add(world, this.body);
-    }
-
+}
+ 
     display() {
-     //NameSpacing(renaming position of Ground)
-        var pos = this.body.position;
-        strokeWeight(2);
-        fill("yellow");
-        rect(pos.x, pos.y, this.width, this.height);
-
+        var pos =this.body.position;
+        var angle = this.body.angle;
+        push();
+        translate(pos.x, pos.y);
+        rotate(angle);
+        imageMode(CENTER);
+        image(this.image, 0, 0, this.width, this.height);
+        pop();
     }
 }
